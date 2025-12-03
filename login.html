@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login - Indhrajith Fitness</title>
+	<link rel="stylesheet" href="./styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<a class="brand" href="./index.html">
+				<svg class="brand-logo" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+					<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+					<path d="M7 12h10M9 9l-2 3 2 3M15 9l2 3-2 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+				<span>Indhrajith Fitness</span>
+			</a>
+			<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">☰</button>
+			<nav id="siteNav" class="site-nav" aria-label="Primary">
+				<ul>
+					<li><a href="./index.html#about">About</a></li>
+					<li><a href="./index.html#programs">Programs</a></li>
+					<li><a href="./index.html#contact">Contact</a></li>
+					<li><a href="./register.html">Register</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="section">
+		<div class="container">
+			<div class="card form-card">
+				<h1 class="form-title">Student Login</h1>
+				<form id="loginForm" novalidate>
+					<label>
+						<span>Email</span>
+						<input type="email" name="email" autocomplete="email" required>
+					</label>
+					<label>
+						<span>Password</span>
+						<input type="password" name="password" autocomplete="current-password" required>
+					</label>
+					<button type="submit" class="btn btn-primary w-100">Login</button>
+					<p class="form-hint">New here? <a href="./register.html">Create an account</a>.</p>
+				</form>
+				<div id="loginWelcome" class="welcome" hidden>
+					<div class="welcome-inner">
+						<img id="welcomePhoto" alt="Profile photo" class="welcome-photo" hidden>
+						<div>
+							<h2 id="welcomeName"></h2>
+							<p id="welcomeEmail" class="muted"></p>
+							<a class="btn btn-ghost" href="./index.html">Go to Home</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© <span id="year"></span> Indhrajith Fitness Gym</p>
+		</div>
+	</footer>
+
+	<script src="./app.js"></script>
+	<script>
+		// If already logged in (from a previous session), show welcome
+		(function(){
+			try {
+				var current = localStorage.getItem('if_current_user');
+				if (!current) return;
+				var user = JSON.parse(current);
+				var wrap = document.getElementById('loginWelcome');
+				var name = document.getElementById('welcomeName');
+				var email = document.getElementById('welcomeEmail');
+				var photo = document.getElementById('welcomePhoto');
+				name.textContent = 'Welcome back, ' + (user.fullName || 'Member') + '!';
+				email.textContent = user.email || '';
+				if (user.photoDataUrl) {
+					photo.src = user.photoDataUrl;
+					photo.hidden = false;
+				}
+				wrap.hidden = false;
+			} catch(e) {}
+		})();
+	</script>
+</body>
+</html>
+
+
