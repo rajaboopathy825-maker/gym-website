@@ -79,6 +79,53 @@
 	</footer>
 
 	<script src="./app.js"></script>
+	<script>
+		// Navbar toggle
+const navToggle = document.getElementById('navToggle');
+const siteNav = document.getElementById('siteNav');
+
+navToggle.addEventListener('click', () => {
+  const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+  navToggle.setAttribute('aria-expanded', !expanded);
+  siteNav.classList.toggle('active');
+});
+
+// Photo preview
+const photoInput = document.querySelector('input[name="photo"]');
+const photoPreview = document.getElementById('photoPreview');
+const photoImg = document.getElementById('photoImg');
+
+photoInput.addEventListener('change', () => {
+  const file = photoInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      photoImg.src = e.target.result;
+      photoPreview.hidden = false;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Footer year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Form validation (basic example)
+const registerForm = document.getElementById('registerForm');
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const password = registerForm.password.value;
+  const confirmPassword = registerForm.confirmPassword.value;
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  alert("Form submitted successfully!");
+});
+
+	</script>
 </body>
 </html>
 

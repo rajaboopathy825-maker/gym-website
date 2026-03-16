@@ -26,7 +26,29 @@ body {
 	margin: 0 auto;
 	padding: 0 16px;
 }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #111;
+  color: #fff;
+}
 
+.site-nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.nav-toggle {
+  display: none; /* hidden on desktop */
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+   cursor: pointer;
+  color: #fff;
+}
 .site-header {
 	position: sticky;
 	top: 0;
@@ -52,7 +74,7 @@ body {
 }
 .brand-logo { color: var(--primary); }
 .nav-toggle {
-	display: inline-flex;
+	display: none;
 	align-items: center;
 	justify-content: center;
 	width: 40px;
@@ -71,12 +93,23 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.site-nav.active {
+  display: block;
+}
+
 .site-nav a {
 	color: var(--text);
 	text-decoration: none;
 	padding: 8px 10px;
 	border-radius: 8px;
 }
+
 .site-nav a:hover { background: #16202d; }
 .site-nav .cta a { background: var(--primary); color: white; }
 .site-nav .cta a:hover { background: var(--primary-800); }
@@ -102,7 +135,7 @@ body {
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-media {
 	min-height: 240px;
-	background-image: url("https://wallpapercave.com/wp/wp2639536.jpg");
+	background-image: url("gym\ photo.webp");
     background-size: cover;
     background-position: center;
 	margin-top: auto;
@@ -114,12 +147,24 @@ body {
 .section { padding: 48px 0; }
 .section-alt { background: #0e1217; }
 .two-col {
-	display: grid;
-	grid-template-columns: 1.1fr .9fr;
-	gap: 24px;
-	align-items: start;
-	
+	display: flex;
+	justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap; /* allows wrapping on small screens */
+    background: #111;
+    color: #fff;
+    padding: 1.5rem;
 }
+#contact .container {
+  display: flex;
+  justify-content: center;   /* centers horizontally */
+  align-items: center;       /* centers vertically */
+  flex-direction: column;    /* stack items in one column */
+  text-align: center;        /* center text inside */
+  gap: 1rem;                 /* spacing between items */
+  padding: 1.5rem;
+}
+
 .grid-3 {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -195,15 +240,16 @@ select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); 
 .note { color: var(--muted); font-size: 13px; margin-top: 8px; }
 
 .site-footer {
-	border-top: 1px solid #1f2937;
-	padding: 18px 0;
-	background: rgba(11,13,16,.6);
+	text-align: center;
+	color: #fff;
+	padding: 1rem;
+	background: #111;
 }
 .footer-inner {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
+	justify-content: center;
+	
 }
 .muted { color: var(--muted); }
 .welcome { margin-top: 16px; }
@@ -232,19 +278,52 @@ select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); 
 	border-radius: 10px;
 	display: block;
 }
+#preview {
+  margin-top: 10px;
+}
+#preview img {
+  border: 2px solid #444;
+  border-radius: 8px;
+}
 
-@media (max-width: 860px) {
+/* Mobile view */
+@media (max-width: 768px) {
 	.hero-inner { grid-template-columns: 1fr; }
 	.two-col { grid-template-columns: 1fr; }
 	.grid-3 { grid-template-columns: 1fr; }
 	.grid-2 { grid-template-columns: 1fr; }
-	.site-nav { display: none; }
-	.site-nav.open { display: block; }
+	.site-nav { 
+		display: none;
+		flex-direction: column;
+		background: #222;
+		padding: 1rem;
+	 }
+	
 	.site-nav ul {
 		flex-direction: column;
-		align-items: flex-start;
-		padding: 12px 0;
+		gap: 1rem;
+	}
+	.site-nav.active{
+		display: flex;
+	}
+	.nav-toggle{
+		display: inline-block;
+		font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+		color: #fff;
 	}
 }
 
+/* Desktop view */
+@media (min-width: 769px) {
+	.nav-toggle {
+    display: none; /* hide button on PC */
+  }
+  .site-nav {
+    display:block;
+    gap: 1rem;
+  }
+}
 

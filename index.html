@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Indhrajith Fitness Gym</title>
 	<link rel="stylesheet" href="./styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,14 +84,12 @@
 			</div>
 		</section>
 
-		<section id="contact" class="section">
-			<div class="container two-col">
-				<center><div>
-					<h2>Contact Us</h2>
-					<p>Email: info@indhrajithfitness.com</p>
-					<p>Phone: +91 94427 42982</p>
-					<p>Mon–Sat: 6:00–22:00</p>
-				</div></center>
+		<section id="contact">
+			<div class="container">
+				<h2>Contact Us</h2>
+			    <p>Email: info@indhrajithfitness.com</p>
+			    <p>Phone: +91 94427 42982</p>
+			    <p>Mon–Sat: 6:00–22:00</p>
      		</div>
 		</section>
 	</main>
@@ -106,7 +104,18 @@
 		</div>
 	</footer>
 
-	<script src="./app.js"></script>
+<script src="./app.js"></script>
+<script>
+   const navToggle = document.getElementById('navToggle');
+   const siteNav = document.getElementById('siteNav');
+
+   navToggle.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !expanded);
+    siteNav.classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>
 
